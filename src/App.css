@@ -1,38 +1,39 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  display: flex;
   min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  background-color: aqua;
+}
+
+.Boks {
+  width: 900px;
+  height: 700px;
+  border: 2px solid black;
+  text-align: center;
+
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.Chat {
+  flex: 9.5;                 
+  border: 2px dashed red;   
+  margin: 5px;
+  overflow-y: auto;       
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Skrivefelt {
+  flex: 0.5;                 
+  border: 2px dashed blue;  
+  margin: 5px;
+}
+
+.Skrivefelt input {
+  width: 90%;               
+  padding: 10px;
+}
+
+.Skrivefelt button {
+  padding: 10px;
 }
