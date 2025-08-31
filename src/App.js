@@ -36,6 +36,7 @@ export default function App() {
             }}}
             placeholder = "Spør meg hva som helst"></input>
             <button onClick = {sendMelding} >Send</button>
+            
           </div>
       </div>
     </div>
