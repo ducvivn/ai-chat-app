@@ -133,7 +133,8 @@
 }
 
 .Bruker, .Ai {
-  white-space: pre-wrap; 
+  white-space: pre-wrap;   /* bevarer linjeskift og mellomrom */
+  line-height: 1.5;        /* gir litt luft mellom linjer */
 }
 
 .scrollButton {
