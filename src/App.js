@@ -5,20 +5,23 @@ const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
 async function hentAiSvar(spørsmål) {
   //forespørsel til openAI sitt API
   const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    
     method: "POST",
     headers: {
       "Content-Type": "application/json", // sender til JSON
       Authorization: `Bearer ${OPENAI_KEY}`, //API nøkkelen
     },
+    
     body: JSON.stringify({
       model: "gpt-4o-mini", //AI modell versjon 4 mini
       messages: [{ role: "user", content: spørsmål }], //spørsmål fra brukeren
     }),
   });
 
-  const data = await res.json();
-  console.log("Svar fra OpenAI:", data);
-  return data?.choices?.[0]?.message?.content ?? "ingen svar";
+  const data = await res.json(); //svaret om til JSON objekt
+  console.log("Svar fra AI:", data); //logg
+  //returnerer innholdet, returner hvis man ikke har fått svar fra AI
+  return data?.choices?.[0]?.message?.content ?? "ingen svar"; 
 }
 
 export default function App() {
