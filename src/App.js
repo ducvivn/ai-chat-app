@@ -20,28 +20,44 @@ async function hentAiSvar(spørsmål) {
 
   const data = await res.json(); //svaret om til JSON objekt
   console.log("Svar fra AI:", data); //logg
+  
   //returnerer innholdet, returner hvis man ikke har fått svar fra AI
   return data?.choices?.[0]?.message?.content ?? "ingen svar"; 
 }
 
 export default function App() {
+  //state, for alle meldinger i chatten
   const [meldinger, setMeldinger] = useState([]);
+  
+  //bruker state for inputet til brukeren, dette er for tekstfeltet
   const [input, setInput] = useState("");
+  
+  //peker som er nederst på bunnen av chatten, null, dette er for å scrolle ned
   const bottomRef = useRef(null);
+  
+  //bruker state for instant scroll ned knapp, for at den skal vises bare når man scroller opp
   const [showButton, setShowButton] = useState(false);
-
+  
+  //funksjonen scroller helt ned til chatten
   function scrollToBottom() {
   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }
-
+  
+  //funksjon for å sende melding, bruker apien for å svar tilbake fra AI-en
   async function sendMelding(e) {
+  
+  //sånn at siden ikke refresher hver gang man sender en melding 
   e.preventDefault();
   if (!input.trim()) return;
-
+  
+  //langrer meldingen for brukeren
   const bruker = { role: "Bruker", content: input };
+
+  //setmeldinger legger den i chatten
   setMeldinger([...meldinger, bruker]);
 
-  const spørsmålet = input;  // 👈 definert nå
+  //lagrer spørsmålet her, dette er for å sende inn i parameteren til hentAisvar
+  const spørsmålet = input; 
   setInput("");
 
   try {
