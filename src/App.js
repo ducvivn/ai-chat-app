@@ -24,7 +24,11 @@ export default function App() {
   const [meldinger, setMeldinger] = useState([]);
   const [input, setInput] = useState("");
   const bottomRef = useRef(null);
+  const [showButton, setShowButton] = useState(false);
 
+  function scrollToBottom() {
+  bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }
 
   async function sendMelding(e) {
   e.preventDefault();
@@ -51,6 +55,19 @@ export default function App() {
   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [meldinger]);
 
+  useEffect(() => {
+  const chat = document.querySelector(".Chat");
+
+  chat.addEventListener("scroll", () => {
+    if (chat.scrollTop + chat.clientHeight < chat.scrollHeight) {
+      setShowButton(true);   
+    } else {
+      setShowButton(false);  
+    }
+  });
+  }, []);
+
+
   return (
     <div className="App">
       <div className="Boks">
@@ -62,6 +79,7 @@ export default function App() {
               > {melding.content} </p>))}
             <div ref={bottomRef}></div> 
           </div>
+          {showButton && <button className ="scrollButton" onClick={scrollToBottom}>⬇</button>}
           <div className= "Skrivefelt">
             <input
             value = {input}
