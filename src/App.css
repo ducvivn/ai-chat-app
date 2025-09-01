@@ -27,13 +27,16 @@
 
 .Chat {
   flex: 9.5;                 
-  margin: 5px;
-  overflow-y: auto;
-  border-radius: 20px;       
+  overflow-y: auto;    
+
+  border: 1px solid rgba(255, 255, 255, 0.2); /* hvit men 20% synlig */
+  border-radius: 12px;
+  backdrop-filter: blur(6px); /* gir glassfølelse */
 }
 
 .Chat::-webkit-scrollbar {
   width: 10px; /* ikke for tynn, så den synes */
+  margin: 20px;
 }
 
 .Chat::-webkit-scrollbar-track {
@@ -62,7 +65,8 @@
 }
 
 .Skrivefelt input {
-  width: 90%;               
+  width: 85%;
+  margin: 20px;               
   padding: 10px;
   border-radius: 10px;
 
@@ -96,6 +100,7 @@
   border: 1px solid rgba(0, 200, 255, 0.3);
   box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
   color: #e0f7ff;
+  cursor: pointer;
 }
 
 
@@ -110,6 +115,7 @@
 .Bruker {
   text-align: right;
   padding: 10px;
+  margin: 10px;
   border-radius: 10px;
   background: rgba(0, 200, 255, 0.1);          /* semi-transparent cyan */
   border: 1px solid rgba(0, 200, 255, 0.5);    /* neon kant */
@@ -121,6 +127,7 @@
 .Ai {
   text-align: left;
   padding: 10px;
+  margin: 30px;
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.1);        /* semi-transparent hvit/grå */
   border: 1px solid rgba(0, 200, 255, 0.3);    /* diskret neon kant */
@@ -130,11 +137,10 @@
 }
 
 .scrollButton {
-  padding: 10px;
   border-radius: 20px;
-  width: 5%;
-  left: 50%;
-  bottom: 10%;
+  width: 10%;
+  left: 45%;
+  bottom: 15%;
   position: fixed;
   border: 1px solid rgba(0, 200, 255, 0.5);
   background: rgba(0, 200, 255, 0.1);
