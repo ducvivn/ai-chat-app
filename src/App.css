@@ -31,26 +31,26 @@
 }
 
 .Chat::-webkit-scrollbar {
-  width: 10px; /* ikke for tynn, så den synes */
+  width: 10px; 
   margin: 20px;
 }
 
 .Chat::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);  /* nesten gjennomsiktig */
+  background: rgba(255, 255, 255, 0.05);  
   border-radius: 10px;
-  backdrop-filter: blur(10px);            /* glass blur */
+  backdrop-filter: blur(10px);           
 }
 
 .Chat::-webkit-scrollbar-thumb {
-  background: rgba(0, 200, 255, 0.3);     /* cyan-blå, gjennomsiktig */
+  background: rgba(0, 200, 255, 0.3);    
   border-radius: 10px;
-  border: 1px solid rgba(0, 255, 255, 0.6); /* neon-kant */
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* glød rundt */
-  backdrop-filter: blur(5px);             /* gjør at den ser glassy ut */
+  border: 1px solid rgba(0, 255, 255, 0.6); 
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.7); 
+  backdrop-filter: blur(5px);             
 }
 
 .Chat::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 200, 255, 0.5);     /* mer intens når hover */
+  background: rgba(0, 200, 255, 0.5);     
   box-shadow: 0 0 15px rgba(0, 255, 255, 1);
 }
 
@@ -66,11 +66,11 @@
   padding: 10px;
   border-radius: 10px;
 
-    /* glass */
+
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
 
-  /* neon kant/glød */
+
   border: 1px solid rgba(0, 200, 255, 0.3);
   box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
   color: #e0f7ff;
@@ -88,11 +88,11 @@
   padding: 10px;
   border-radius: 10px;
 
-      /* glass */
+ 
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(8px);
 
-  /* neon kant/glød */
+
   border: 1px solid rgba(0, 200, 255, 0.3);
   box-shadow: 0 0 8px rgba(0, 200, 255, 0.3);
   color: #e0f7ff;
@@ -113,11 +113,11 @@
   padding: 10px;
   margin: 30px;
   border-radius: 10px;
-  background: rgba(0, 200, 255, 0.1);          /* semi-transparent cyan */
-  border: 1px solid rgba(0, 200, 255, 0.5);    /* neon kant */
-  color: #e0f7ff;                              /* lys cyan tekst */
-  backdrop-filter: blur(10px);                 /* glass blur */
-  box-shadow: 0 0 10px rgba(0, 200, 255, 0.4); /* cyan glow */
+  background: rgba(0, 200, 255, 0.1);          
+  border: 1px solid rgba(0, 200, 255, 0.5);  
+  color: #e0f7ff;                             
+  backdrop-filter: blur(10px);                
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.4); 
 }
 
 .Ai {
@@ -125,11 +125,15 @@
   padding: 10px;
   margin: 30px;
   border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);        /* semi-transparent hvit/grå */
-  border: 1px solid rgba(0, 200, 255, 0.3);    /* diskret neon kant */
-  color: #ffffff;                              /* hvit tekst */
-  backdrop-filter: blur(10px);                 /* glass blur */
-  box-shadow: 0 0 10px rgba(0, 200, 255, 0.2); /* subtil glow */
+  background: rgba(255, 255, 255, 0.1);       
+  border: 1px solid rgba(0, 200, 255, 0.3);   
+  color: #ffffff;                             
+  backdrop-filter: blur(10px);                
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.2); 
+}
+
+.Bruker, .Ai {
+  white-space: pre-wrap; 
 }
 
 .scrollButton {
@@ -144,7 +148,7 @@
   color: #00eaff;
   cursor: pointer;
 
-  /* glød */
+
   box-shadow: 
     0 0 10px rgba(0, 200, 255, 0.5),
     0 0 20px rgba(0, 200, 255, 0.3);
