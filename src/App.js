@@ -46,39 +46,46 @@ export default function App() {
   //funksjon for å sende melding, bruker apien for å svar tilbake fra AI-en
   async function sendMelding(e) {
   
-  //sånn at siden ikke refresher hver gang man sender en melding 
-  e.preventDefault();
-  if (!input.trim()) return;
+    //sånn at siden ikke refresher hver gang man sender en melding 
+    e.preventDefault();
+    if (!input.trim()) return;
   
-  //langrer meldingen for brukeren
-  const bruker = { role: "Bruker", content: input };
+    //langrer meldingen for brukeren
+    const bruker = { role: "Bruker", content: input };
 
-  //setmeldinger legger den i chatten
-  setMeldinger([...meldinger, bruker]);
+    //setmeldinger legger den i chatten
+    setMeldinger([...meldinger, bruker]);
 
-  //lagrer spørsmålet her, dette er for å sende inn i parameteren til hentAisvar
-  const spørsmålet = input; 
-  setInput("");
+    //lagrer spørsmålet her, dette er for å sende inn i parameteren til hentAisvar
+    const spørsmålet = input; 
+    setInput("");
 
-  try {
-    const aiSvar = await hentAiSvar(spørsmålet);
-    setMeldinger((prev) => [...prev, { role: "Ai", content: aiSvar }]);
-  } catch (error) {
-    console.error(error);
-    setMeldinger((prev) => [
-      ...prev,
-      { role: "Ai", content: "Oops, noe gikk galt 😅" },
-    ]);
+    try {
+      //sender spørsmålet her, og henter og lagrer ai svaret her.
+      const aiSvar = await hentAiSvar(spørsmålet);
+      //putter svaret i chatten , setter rollen som AI, og putter inn svaret i content. 
+      setMeldinger((prev) => [...prev, { role: "Ai", content: aiSvar }]);
+      //catcher error, feilmelding hvis det er 
+    } catch (error) {
+      console.error(error);
+      setMeldinger((prev) => [
+        ...prev,
+        { role: "Ai", content: "feilmedling error" },
+      ]);
+    }
   }
-}
+  
+  //bruker use effekt her, når meldingene oppdateres, så scroller den automatisk til bunnen
   useEffect(() => {
   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [meldinger]);
 
+  //use effekten her sjekker om brukeren skroller opp, hvis så, vis skroll ned instant knappen. 
   useEffect(() => {
   const chat = document.querySelector(".Chat");
-
+  
   chat.addEventListener("scroll", () => {
+    //hvis ikke nederst hvis knappen, ellers skjule. Bruker true eller false verdien for å vise eller skjule 
     if (chat.scrollTop + chat.clientHeight < chat.scrollHeight) {
       setShowButton(true);   
     } else {
