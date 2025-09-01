@@ -27,11 +27,7 @@
 
 .Chat {
   flex: 9.5;                 
-  overflow-y: auto;    
-
-  border: 1px solid rgba(255, 255, 255, 0.2); /* hvit men 20% synlig */
-  border-radius: 12px;
-  backdrop-filter: blur(6px); /* gir glassfølelse */
+  overflow-y: auto;  
 }
 
 .Chat::-webkit-scrollbar {
@@ -115,7 +111,7 @@
 .Bruker {
   text-align: right;
   padding: 10px;
-  margin: 10px;
+  margin: 30px;
   border-radius: 10px;
   background: rgba(0, 200, 255, 0.1);          /* semi-transparent cyan */
   border: 1px solid rgba(0, 200, 255, 0.5);    /* neon kant */
