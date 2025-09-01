@@ -37,3 +37,15 @@
 .Skrivefelt button {
   padding: 10px;
 }
+
+.Bruker {
+  text-align: right;
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.Ai {
+  text-align: left;
+  background-color: gray;
+  padding: 10px;
+}

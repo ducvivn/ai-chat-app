@@ -1,19 +1,52 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
+const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+
+async function hentAiSvar(spørsmål) {
+  const res = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${OPENAI_KEY}`,
+    },
+    body: JSON.stringify({
+      model: "gpt-4o-mini",
+      messages: [{ role: "user", content: spørsmål }],
+    }),
+  });
+
+  const data = await res.json();
+  console.log("Svar fra OpenAI:", data);
+  return data?.choices?.[0]?.message?.content ?? "Fikk ikke noe svar 🤷‍♂️";
+}
 
 export default function App() {
   const [meldinger, setMeldinger] = useState([]);
   const [input, setInput] = useState("");
   const bottomRef = useRef(null);
 
-  function sendMelding(e) {
-    e.preventDefault();
-    if (!input.trim()) return;
 
-    setMeldinger([...meldinger, { role: "bruker", content: input }]);
-    setInput("");
+  async function sendMelding(e) {
+  e.preventDefault();
+  if (!input.trim()) return;
+
+  const bruker = { role: "Bruker", content: input };
+  setMeldinger([...meldinger, bruker]);
+
+  const spørsmålet = input;  // 👈 definert nå
+  setInput("");
+
+  try {
+    const aiSvar = await hentAiSvar(spørsmålet);
+    setMeldinger((prev) => [...prev, { role: "Ai", content: aiSvar }]);
+  } catch (error) {
+    console.error(error);
+    setMeldinger((prev) => [
+      ...prev,
+      { role: "Ai", content: "Oops, noe gikk galt 😅" },
+    ]);
   }
-
+}
   useEffect(() => {
   bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [meldinger]);
@@ -22,8 +55,11 @@ export default function App() {
     <div className="App">
       <div className="Boks">
           <div className="Chat">
-            {meldinger.map((melding, index) => 
-              (<p key={index}> {melding.content} </p>))}
+            {meldinger.map((melding, index) => (
+              <p 
+              key = {index}
+              className = {melding.role}
+              > {melding.content} </p>))}
             <div ref={bottomRef}></div> 
           </div>
           <div className= "Skrivefelt">
@@ -36,7 +72,6 @@ export default function App() {
             }}}
             placeholder = "Spør meg hva som helst"></input>
             <button onClick = {sendMelding} >Send</button>
-            
           </div>
       </div>
     </div>
