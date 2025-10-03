@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from "react";
 import "./App.css";
-const OPENAI_KEY = process.env.REACT_APP_OPENAI_KEY;
+const OPENAI_KEY = process.env.OPENAI_KEY;
 
 async function hentAiSvar(spørsmål) {
   //forespørsel til openAI sitt API
